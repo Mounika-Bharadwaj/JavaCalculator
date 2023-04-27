@@ -9,5 +9,12 @@ node{
     stage('email notification'){
       mail bcc: '', body: 'Hai , Welcome !', cc: '', from: '', replyTo: '', subject: 'jenkins email notification demo', to: 'aswdevops2699@gmail.com'
   }
+  stage('slack notification'){
+    slackSend baseUrl: 'https://hooks.slack.com/services/', 
+      channel: '#jenkins-pipeline-demo',
+      color: 'good', message: 'Welcome to Slack!',
+      tokenCredentialId: 'slack-demo',
+      username: 'javahome
+  }
 }
   
