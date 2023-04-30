@@ -6,6 +6,12 @@ node{
     def mvnHome=tool name: 'maven-3', type: 'maven'
     sh ' ${mvnHome}/bin/mvn package'
   }
+  stage('sonarqube analysis'){
+    def mnvHOME= tool name=maven-3, type='maven'
+    withSonarQubeEnv('sonar-6.7.7'){
+    sh "${mvnHOME}/bin/mvn sonar:sonar"
+    }
+  }
     stage('email notification'){
       mail bcc: '', body: 'Hai , Welcome !', cc: '', from: '', replyTo: '', subject: 'jenkins email notification demo', to: 'aswdevops2699@gmail.com'
   }
